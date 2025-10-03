@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Sederhana</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .kalkulator {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    .layar {
+      width: 100%;
+      height: 60px;
+      font-size: 24px;
+      margin-bottom: 15px;
+      text-align: right;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #eaeaea;
+    }
+    .tombol-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      height: 60px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .operator {
+      background: #f57c00;
+    }
+    .operator:hover {
+      background: #ef6c00;
+    }
+    .clear {
+      background: #e53935;
+    }
+    .clear:hover {
+      background: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <div class="kalkulator">
+    <input type="text" class="layar" id="layar" disabled>
+    <div class="tombol-grid">
+      <button class="clear" onclick="hapus()">C</button>
+      <button onclick="hapusSatu()">⌫</button>
+      <button onclick="tambahInput('%')">%</button>
+      <button class="operator" onclick="tambahInput('/')">÷</button>
+      
+      <button onclick="tambahInput('7')">7</button>
+      <button onclick="tambahInput('8')">8</button>
+      <button onclick="tambahInput('9')">9</button>
+      <button class="operator" onclick="tambahInput('*')">×</button>
+      
+      <button onclick="tambahInput('4')">4</button>
+      <button onclick="tambahInput('5')">5</button>
+      <button onclick="tambahInput('6')">6</button>
+      <button class="operator" onclick="tambahInput('-')">−</button>
+      
+      <button onclick="tambahInput('1')">1</button>
+      <button onclick="tambahInput('2')">2</button>
+      <button onclick="tambahInput('3')">3</button>
+      <button class="operator" onclick="tambahInput('+')">+</button>
+      
+      <button onclick="tambahInput('0')">0</button>
+      <button onclick="tambahInput('00')">00</button>
+      <button onclick="tambahInput('.')">.</button>
+      <button class="operator" onclick="hitung()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let layar = document.getElementById("layar");
+
+    function tambahInput(value) {
+      layar.value += value;
+    }
+
+    function hapus() {
+      layar.value = "";
+    }
+
+    function hapusSatu() {
+      layar.value = layar.value.slice(0, -1);
+    }
+
+    function hitung() {
+      try {
+        layar.value = eval(layar.value);
+      } catch (e) {
+        layar.value = "Error";
+      }
+    }
+  </script>
+</body>
+</html>
